@@ -1,17 +1,20 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Box, CssBaseline, Toolbar, Typography } from '@material-ui/core';
 
 
 const Navbar = () => {
    return ( 
       <React.Fragment>
-         <AppBar>
-            <Toolbar>
-               <Typography>
-                  Pokedex
-               </Typography>
-            </Toolbar>
-         </AppBar>
+         <CssBaseline />
+         <Box mb={10}> 
+            <AppBar >
+               <Toolbar>
+                  <Typography gutterBottom>
+                     Pokedex
+                  </Typography>
+               </Toolbar>
+            </AppBar>
+         </Box>
       </React.Fragment>
     );
 }
