@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import List from '../components/List';
 import React, { useState, useEffect } from 'react';
 
-const url = 'https://pokeapi.co/api/v2/pokemon/?limit=10'
+const url = 'https://pokeapi.co/api/v2/pokemon/?limit=20'
 
 const Home = () => {
 
@@ -36,29 +36,16 @@ const Home = () => {
    return ( 
       <React.Fragment>
          <Navbar />
-         <Container maxWidth="md">
+        <Container maxWidth="lg">
             <Grid container spacing={3}>
-               { pokemon ? pokemon.map(pokemon => (
-                     <Grid item xs={12} sm={6} md={4}> 
-                        <List pokemon={pokemon} key={pokemon.name}/>
+               { pokemon ? pokemon.map((pokemon, index) => (
+                     <Grid item xs={12} sm={6} md={4} key={index}> 
+                        <List pokemon={pokemon} />
                      </Grid>
                   )) : <h1> Loading... </h1>
                }
-               {/* {[0,1,2,3,4,5,6,7,8,9,10].map(item=> (
-                  <Grid item xs={12} sm={6} md={4}>
-                     <Card>
-                        <CardContent>
-                           <Typography>
-                              {item}
-                           </Typography>
-                        </CardContent>
-                     </Card>
-                  </Grid>
-               ))} */}
-               
             </Grid>
          </Container>
-         
       </React.Fragment>
     );
 }

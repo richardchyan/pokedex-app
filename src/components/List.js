@@ -1,41 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { Typography, Container, Grid, Card, CardContent, CardMedia } from '@material-ui/core';
-// import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
-const imageURL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png';
+const useStyles = makeStyles({
 
-// const useStyles = makeStyles({
-//    container: {
-//       flexGrow : '2',
-//    }
-// })
-
-
+   image: {
+      maxWidth : '80%',
+      margin: '0 auto',
+   }
+})
 
 
 const List = ({ pokemon }) => {
 
    const { name, url } = pokemon;
+   const pokemonIndex = url.split('/')[6];
+   console.log(pokemonIndex);
+   const classes = useStyles();
+
+   const imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
 
    return ( 
       <React.Fragment>
-         {/* <Container>
-            <Grid container spacing={5} direction="row">
-               <Grid item xs={12} sm={6} md={4}> */}
-                  <Card>
-                     <CardContent>
-                        <Typography>
-                           {name}
-                        </Typography>
-                        <Typography>
-                           {url}
-                        </Typography>
-                     </CardContent>
-                  </Card>
-               {/* </Grid>
-            </Grid>
-         </Container> */}
-         
+         <Card>
+            <CardMedia 
+               className={classes.image}
+               component="img"
+               image={imageURL}
+            />
+            <CardContent>
+               <Typography>
+                  {name}
+               </Typography>
+               <Typography>
+                  {pokemonIndex}
+               </Typography>
+            </CardContent>
+         </Card>
       </React.Fragment>
     );
 }
