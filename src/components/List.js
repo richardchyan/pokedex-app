@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Container, Grid, Card, CardContent, CardMedia } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import { Typography, Container, Grid, Card, CardContent, CardMedia, Button, Pagination } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
 
    image: {
-      maxWidth : '80%',
+      maxWidth : '50%',
       margin: '0 auto',
+   }, 
+   button: {
+      marginBottom: '20px',
    }
+
 })
+
 
 
 const List = ({ pokemon }) => {
@@ -17,6 +23,7 @@ const List = ({ pokemon }) => {
    const pokemonIndex = url.split('/')[6];
    console.log(pokemonIndex);
    const classes = useStyles();
+   const history = useHistory();
 
    const imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
 
@@ -36,6 +43,14 @@ const List = ({ pokemon }) => {
                   {pokemonIndex}
                </Typography>
             </CardContent>
+            <Button 
+               onClick={() => history.push(`/details/${pokemonIndex}`)}
+               className={classes.button}
+               color="primary" 
+               variant="contained"
+            >
+               Pokedex Details
+            </Button>
          </Card>
       </React.Fragment>
     );
