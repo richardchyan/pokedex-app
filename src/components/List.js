@@ -15,17 +15,18 @@ const useStyles = makeStyles({
 
 })
 
-
-
 const List = ({ pokemon }) => {
 
    const { name, url } = pokemon;
    const pokemonIndex = url.split('/')[6];
-   console.log(pokemonIndex);
+   // console.log(pokemonIndex);
    const classes = useStyles();
    const history = useHistory();
-
    const imageURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonIndex}.png`;
+
+   const capitalizeName = (name) => {
+      return name.charAt(0).toUpperCase() + name.slice(1);
+   }
 
    return ( 
       <React.Fragment>
@@ -37,7 +38,7 @@ const List = ({ pokemon }) => {
             />
             <CardContent>
                <Typography>
-                  {name}
+                  {capitalizeName(name)}
                </Typography>
                <Typography>
                   {pokemonIndex}
