@@ -5,6 +5,7 @@ import List from '../components/List';
 import React, { useState, useEffect } from 'react';
 import { makeStyles, fade} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+// import PagePagination from '../components/PagePagination';
 
 const url = 'https://pokeapi.co/api/v2/pokemon/?limit=151'
 const useStyles = makeStyles(theme => ({
@@ -18,8 +19,11 @@ const useStyles = makeStyles(theme => ({
       margin: '0 auto',
       display: 'flex',
       justifyContent: 'space-between',
-      alignItems: 'center',
-   }
+   }, 
+   // paginationButtons: {
+   //    textDecoration: 'none',
+   //    display: 'inline-block',
+   // }
 }));
 
 const Home = () => {
@@ -27,7 +31,7 @@ const Home = () => {
    const [loading, setLoading ] = useState(false);
    const [pokemon, setPokemon] = useState([]);
    const [currentPage, setCurrentPage] = useState(1);
-   const [cardsPerPage, setCardsPerPage] = useState(12);
+   const [cardsPerPage, setCardsPerPage] = useState(36);
    const classes = useStyles();
    const [filter, setFilter] = useState('');
    
@@ -48,9 +52,6 @@ const Home = () => {
       }
    }
 
-   const handleSearch = (search) => {
-      setFilter(search);
-   }
 
    useEffect(() => {
       fetchPokemon();
@@ -66,6 +67,12 @@ const Home = () => {
       }
    }
 
+   const handleSearch = (search) => {
+      // setCurrentPage(1);
+      setFilter(search);
+      // history.push('/filtered');
+   }
+
    if(loading){
       return <CircularProgress />
    }
@@ -76,7 +83,7 @@ const Home = () => {
          <Container maxWidth="lg" className={classes.pageControls}>
             <Pagination 
                className={classes.pagination} 
-               count={13} 
+               count={5} 
                color="primary"
                size="large"
                shape="rounded"
@@ -84,6 +91,7 @@ const Home = () => {
                hideNextButton
                onChange={(e) => handlePagination(e.target.innerText)}
             />
+            {/* <PagePagination currentPage={currentPage} setCurrentPage={setCurrentPage} className={classes.paginationButtons} /> */}
             <TextField
                   variant="outlined"
                   label="Search Pokemon"
