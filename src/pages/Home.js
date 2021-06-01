@@ -55,7 +55,7 @@ const Home = () => {
 
    useEffect(() => {
       fetchPokemon();
-   },[])
+   },[setFilter])
 
    const indexOfLastCard = currentPage * cardsPerPage;
    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
@@ -68,9 +68,15 @@ const Home = () => {
    }
 
    const handleSearch = (search) => {
-      // setCurrentPage(1);
-      setFilter(search);
-      // history.push('/filtered');
+      if(search !== ''){
+         setCardsPerPage(151);
+         setFilter(search);
+         setCurrentPage(1);
+      } else {
+         setCardsPerPage(36);
+         setFilter('');
+      }
+     
    }
 
    if(loading){
