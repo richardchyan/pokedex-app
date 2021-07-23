@@ -5,6 +5,7 @@ import List from '../components/List';
 import React, { useState, useEffect } from 'react';
 import { makeStyles, fade} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+import logo from '../logo.png';
 // import PagePagination from '../components/PagePagination';
 
 const url = 'https://pokeapi.co/api/v2/pokemon/?limit=151'
@@ -20,6 +21,10 @@ const useStyles = makeStyles(theme => ({
       display: 'flex',
       justifyContent: 'space-between',
    }, 
+   logoImage: {
+      maxWidth: '40%',
+      margin: '0 auto',
+   }
    // paginationButtons: {
    //    textDecoration: 'none',
    //    display: 'inline-block',
@@ -55,7 +60,7 @@ const Home = () => {
 
    useEffect(() => {
       fetchPokemon();
-   },[setFilter])
+   },[])
 
    const indexOfLastCard = currentPage * cardsPerPage;
    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
@@ -72,7 +77,7 @@ const Home = () => {
          setCardsPerPage(151);
          setFilter(search);
          setCurrentPage(1);
-      } else {
+      } else if (search == '') {
          setCardsPerPage(36);
          setFilter('');
       }
@@ -86,6 +91,7 @@ const Home = () => {
    return ( 
       <React.Fragment>
          <Navbar />
+         <img className={classes.logoImage}src={logo} alt="pokemon logo" />
          <Container maxWidth="lg" className={classes.pageControls}>
             <Pagination 
                className={classes.pagination} 
