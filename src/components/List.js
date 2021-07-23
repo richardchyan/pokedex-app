@@ -47,7 +47,7 @@ const List = ({ pokemon }) => {
             <Button 
                onClick={() => history.push(`/details/${pokemonIndex}`)}
                className={classes.button}
-               color="primary" 
+               color="secondary" 
                variant="contained"
             >
                Pokedex Details
